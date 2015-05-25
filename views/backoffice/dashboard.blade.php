@@ -1,161 +1,221 @@
-@extends('layout.main')
-
-@section('vendor_js')
-  <script src="{{ assets('bo.js') }}/flot/flot.min.js"></script>
-  <script src="{{ assets('bo.js') }}/flot/flot.resize.min.js"></script>
-  <script src="{{ assets('bo.js') }}/raphael-2.1.0.min.js"></script>
-  <script src="{{ assets('bo.js') }}/dashboard.js"></script>
-@stop
-
-@section('var_js')
-  <script type="text/javascript">
-  var clientStat = {{ json_encode($clientStat) }};
-  var projectStat = {{ json_encode($projectStat) }};
-  var PattyCashStat = {{ json_encode($PattyCashStat) }};
-  var catInStat = {{ json_encode($catInStat) }};
-  var catOutStat = {{ json_encode($catOutStat) }};
-  var catInOutStat = {{ json_encode($catInOutStat) }};
-  </script>
-@stop
+@extends('layout.backoffice')
 
 @section('content')
-    <div class="pageheader">
-      <h2>Dashboard <span>Dashboard</span></h2>
-    </div>
-    
-    <div class="contentpanel">  
-      <div class="row">
-        
-        <div class="col-sm-6 col-md-3">
-          <div class="panel panel-success panel-stat">
-            <div class="panel-heading">
-              
-              <div class="stat">
-                <div class="row">
-                  <div class="col-xs-4">
-                    <img src="{{ assets('bo.images') }}/is-user.png" alt="" />
-                  </div>
-                  <div class="col-xs-8">
-                    <small class="stat-label">Total Clients</small>
-                    <h1>{{ $totalClients }}</h1>
-                  </div>
-                </div><!-- row -->
-              </div><!-- stat -->
-              
-            </div><!-- panel-heading -->
-          </div><!-- panel -->
-        </div><!-- col-sm-6 -->
-        
-        <div class="col-sm-6 col-md-3">
-          <div class="panel panel-warning panel-stat">
-            <div class="panel-heading">
-              
-              <div class="stat">
-                <div class="row">
-                  <div class="col-xs-4">
-                    <img src="{{ assets('bo.images') }}/is-document.png" alt="" />
-                  </div>
-                  <div class="col-xs-8">
-                    <small class="stat-label">Total Contact Person</small>
-                    <h1>{{ $totalContacts }}</h1>
-                  </div>
-                </div><!-- row -->
-              </div><!-- stat -->
-              
-            </div><!-- panel-heading -->
-          </div><!-- panel -->
-        </div><!-- col-sm-6 -->
-        
-        <div class="col-sm-6 col-md-3">
-          <div class="panel panel-danger panel-stat">
-            <div class="panel-heading">
-              
-              <div class="stat">
-                <div class="row">
-                  <div class="col-xs-4">
-                    <img src="{{ assets('bo.images') }}/is-document.png" alt="" />
-                  </div>
-                  <div class="col-xs-8">
-                    <small class="stat-label">Total Projects</small>
-                    <h1>{{ $totalProjects }}</h1>
-                  </div>
-                </div><!-- row -->
-              </div><!-- stat -->
-              
-            </div><!-- panel-heading -->
-          </div><!-- panel -->
-        </div><!-- col-sm-6 -->
-        
-        <div class="col-sm-6 col-md-3">
-          <div class="panel panel-primary panel-stat">
-            <div class="panel-heading">
-              
-              <div class="stat">
-                <div class="row">
-                  <div class="col-xs-4">
-                    <img src="{{ assets('bo.images') }}/is-document.png" alt="" />
-                  </div>
-                  <div class="col-xs-8">
-                    <small class="stat-label">Total Documents</small>
-                    <h1>{{ $totalDocuments }}</h1>
-                  </div>
-                </div><!-- row -->                  
-              </div><!-- stat -->
-              
-            </div><!-- panel-heading -->
-          </div><!-- panel -->
-        </div><!-- col-sm-6 -->
-      </div><!-- row -->
-      
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-sm-12">
-                  <h5 class="subtitle mb5">IntApp Performance</h5>
-                  <p class="mb15">Total clients and project in years</p>
-                  <div id="basicflot" style="width: 100%; height: 300px; margin-bottom: 20px"></div>
-                </div>
-              </div><!-- row -->
-            </div><!-- panel-body -->
-          </div><!-- panel -->
-        </div><!-- col-sm-9 -->
-      </div><!-- row -->
-      
-      <!-- Statictic Petty Cash -->
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-sm-12">
-                  <h5 class="subtitle mb5">total expenditure Petty Cash</h5>
-                  <p class="mb15">total expenditure</p>
-                  <div id="basicflot2" style="width: 100%; height: 300px; margin-bottom: 20px"></div>
-                </div>
-              </div><!-- row -->
-            </div><!-- panel-body -->
-          </div><!-- panel -->
-        </div><!-- col-sm-9 -->
-      </div><!-- row -->
-      
-      <!-- Statictic Type -->
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-sm-12">
-                  <h5 class="subtitle mb5">total expenditure Petty Cash / Type</h5>
-                  <p class="mb15">total expenditure/type</p>
-                  <div id="basicflot3" style="width: 100%; height: 300px; margin-bottom: 20px"></div>
-                </div>
-              </div><!-- row -->
-            </div><!-- panel-body -->
-          </div><!-- panel -->
-        </div><!-- col-sm-9 -->
-      </div><!-- row -->
-      
-    </div><!-- contentpanel -->
+<div id="content-header" class="mini">
+<h1>Dashboard</h1>
+<ul class="mini-stats box-3">
+	<li>
+		<div class="left sparkline_bar_good"><span>2,4,9,7,12,10,12</span>+10%</div>
+		<div class="right">
+			<strong>36094</strong>
+			Visits
+		</div>
+	</li>
+	<li>
+		<div class="left sparkline_bar_neutral"><span>20,15,18,14,10,9,9,9</span>0%</div>
+		<div class="right">
+			<strong>1433</strong>
+			Users
+		</div>
+	</li>
+	<li>
+		<div class="left sparkline_bar_bad"><span>3,5,9,7,12,20,10</span>+50%</div>
+		<div class="right">
+			<strong>8650</strong>
+			Orders
+		</div>
+	</li>
+</ul>
+</div>
+
+<div id="breadcrumb">
+<a href="#" title="Go to Home" class="tip-bottom"><i class="fa fa-home"></i> Home</a>
+<a href="#" class="current">Dashboard</a>
+</div>
+
+	<div class="row">
+		<div class="col-xs-12 center" style="text-align: center;">					
+			<ul class="quick-actions">
+				<li>
+					<a href="#">
+						<i class="icon-cal"></i>
+						Manage Events
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="icon-shopping-bag"></i>
+						Manage Orders
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="icon-database"></i>
+						Manage DB
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="icon-people"></i>
+						Manage Users
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="icon-lock"></i>
+						Security
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="icon-piechart"></i>
+						Statistics
+					</a>
+				</li>
+			</ul>
+		</div>	
+	</div>
+	<br />
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="alert alert-info">
+				Welcome in the <strong>Unicorn Admin Theme</strong>. Don't forget to check all the pages!
+				<a href="#" data-dismiss="alert" class="close">×</a>
+			</div>
+			<div class="widget-box">
+				<div class="widget-title">
+					<span class="icon"><i class="fa fa-signal"></i></span>
+					<h5>Site Statistics</h5>
+					<div class="buttons">
+						<a href="#" class="btn"><i class="fa fa-refresh"></i> <span class="text">Update stats</span></a>
+					</div>
+				</div>
+				<div class="widget-content">
+					<div class="row">
+						<div class="col-xs-12 col-sm-4">
+							<ul class="site-stats">
+								<li><div class="cc"><i class="fa fa-user"></i> <strong>1433</strong> <small>Total Users</small></div></li>
+								<li><div class="cc"><i class="fa fa-arrow-right"></i> <strong>16</strong> <small>New Users (last week)</small></div></li>
+								<li class="divider"></li>
+								<li><div class="cc"><i class="fa fa-shopping-cart"></i> <strong>259</strong> <small>Total Shop Items</small></div></li>
+								<li><div class="cc"><i class="fa fa-tag"></i> <strong>8650</strong> <small>Total Orders</small></div></li>
+								<li><div class="cc"><i class="fa fa-repeat"></i> <strong>29</strong> <small>Pending Orders</small></div></li>
+							</ul>
+						</div>
+						<div class="col-xs-12 col-sm-8">
+							<div class="chart"></div>
+						</div>	
+					</div>							
+				</div>
+			</div>					
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			<div class="widget-box">
+				<div class="widget-title"><span class="icon"><i class="fa fa-file"></i></span><h5>Recent Posts</h5><span title="54 total posts" class="label label-info tip-left">54</span></div>
+				<div class="widget-content nopadding">
+					<ul class="recent-posts">
+						<li>
+							<div class="user-thumb">
+								<img width="40" height="40" alt="User" src="img/demo/av2.jpg">
+							</div>
+							<div class="article-post">
+								<span class="user-info"> By: neytiri on 2 Aug 2012, 09:27 AM, IP: 186.56.45.7 </span>
+								<p>
+									<a href="#">Vivamus sed auctor nibh congue, ligula vitae tempus pharetra...</a>
+								</p>
+								<a href="#" class="btn btn-primary btn-xs">Edit</a> <a href="#" class="btn btn-success btn-xs">Publish</a> <a href="#" class="btn btn-danger btn-xs">Delete</a>
+							</div>
+						</li>
+						<li>
+							<div class="user-thumb">
+								<img width="40" height="40" alt="User" src="img/demo/av3.jpg">
+							</div>
+							<div class="article-post">
+								<span class="user-info"> By: john on on 24 Jun 2012, 04:12 PM, IP: 192.168.24.3 </span>
+								<p>
+									<a href="#">Vivamus sed auctor nibh congue, ligula vitae tempus pharetra...</a>
+								</p>
+								<a href="#" class="btn btn-primary btn-xs">Edit</a> <a href="#" class="btn btn-success btn-xs">Publish</a> <a href="#" class="btn btn-danger btn-xs">Delete</a>
+							</div>
+						</li>
+						<li>
+							<div class="user-thumb">
+								<img width="40" height="40" alt="User" src="img/demo/av1.jpg">
+							</div>
+							<div class="article-post">
+								<span class="user-info"> By: michelle on 22 Jun 2012, 02:44 PM, IP: 172.10.56.3 </span>
+								<p>
+									<a href="#">Vivamus sed auctor nibh congue, ligula vitae tempus pharetra...</a>
+								</p>
+								<a href="#" class="btn btn-primary btn-xs">Edit</a> <a href="#" class="btn btn-success btn-xs">Publish</a> <a href="#" class="btn btn-danger btn-xs">Delete</a>
+							</div>
+						</li>
+						<li class="viewall">
+							<a title="View all posts" class="tip-top" href="#"> + View all + </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			<div class="widget-box">
+				<div class="widget-title"><span class="icon"><i class="fa fa-comment"></i></span><h5>Recent Comments</h5><span title="88 total comments" class="label label-info tip-left">88</span></div>
+				<div class="widget-content nopadding">
+					<ul class="recent-comments">
+						<li>
+							<div class="user-thumb">
+								<img width="40" height="40" alt="User" src="img/demo/av1.jpg">
+							</div>
+							<div class="comments">
+								<span class="user-info"> User: michelle on IP: 172.10.56.3 </span>
+								<p>
+									<a href="#">Vivamus sed auctor nibh congue, ligula vitae tempus pharetra...</a>
+								</p>
+								<a href="#" class="btn btn-primary btn-xs">Edit</a> <a href="#" class="btn btn-success btn-xs">Approve</a> <a href="#" class="btn btn-warning btn-xs">Mark as spam</a> <a href="#" class="btn btn-danger btn-xs">Delete</a>
+							</div>
+						</li>
+						<li>
+							<div class="user-thumb">
+								<img width="40" height="40" alt="User" src="img/demo/av3.jpg">
+							</div>
+							<div class="comments">
+								<span class="user-info"> User: john on IP: 192.168.24.3 </span>
+								<p>
+									<a href="#">Vivamus sed auctor nibh congue, ligula vitae tempus pharetra...</a>
+								</p>
+								<a href="#" class="btn btn-primary btn-xs">Edit</a> <a href="#" class="btn btn-success btn-xs">Approve</a> <a href="#" class="btn btn-warning btn-xs">Mark as spam</a> <a href="#" class="btn btn-danger btn-xs">Delete</a>
+							</div>
+						</li>
+						<li>
+							<div class="user-thumb">
+								<img width="40" height="40" alt="User" src="img/demo/av2.jpg">
+							</div>
+							<div class="comments">
+								<span class="user-info"> User: neytiri on IP: 186.56.45.7 </span>
+								<p>
+									<a href="#">Vivamus sed auctor nibh congue, ligula vitae tempus pharetra...</a>
+								</p>
+								<a href="#" class="btn btn-primary btn-xs">Edit</a> <a href="#" class="btn btn-success btn-xs">Approve</a> <a href="#" class="btn btn-warning btn-xs">Mark as spam</a> <a href="#" class="btn btn-danger btn-xs">Delete</a>
+							</div>
+						</li>
+						<li class="viewall">
+							<a title="View all comments" class="tip-top" href="#"> + View all + </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="widget-box widget-calendar">
+				<div class="widget-title"><span class="icon"><i class="fa fa-calendar"></i></span><h5>Calendar</h5></div>
+				<div class="widget-content nopadding">
+					<div class="calendar"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 @stop
