@@ -1,0 +1,15 @@
+Options -Indexes
+RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteRule ^home-riri-online-shop$                             /ros/ui-frontend/index.php
+RewriteRule ^product-list-riri-online-shop$                             /ros/ui-frontend/product.php
+RewriteRule ^detail-product-list-riri-online-shop$                             /ros/ui-frontend/product_detail.php
+RewriteRule ^cart-shop-list-riri-online-shop$                             /ros/ui-frontend/cart.php
+RewriteRule ^checkout-shop-riri-online-shop$                             /ros/ui-frontend/checkout.php
+RewriteRule ^login-account-riri-online-shop$                             /ros/ui-frontend/login.php
+RewriteRule ^registration-account-riri-online-shop$                             /ros/ui-frontend/registration.php
+RewriteRule ^account-riri-online-shop$                             /ros/ui-frontend/account.php
+RewriteRule ^update-data-customer$                             /ros/ui-frontend/update_data.php
+RewriteRule ^update-data-account$                             /ros/ui-frontend/update_account.php
+RewriteRule ^list-shopping$                             /ros/ui-frontend/list_shopping.php
