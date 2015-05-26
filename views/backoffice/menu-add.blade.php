@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="<?php echo assets('bo.css');?>/jquery-ui.css" />
 <link rel="stylesheet" href="<?php echo assets('bo.css');?>/icheck/flat/blue.css" />
 <link rel="stylesheet" href="<?php echo assets('bo.css');?>/unicorn.css" />
-<link rel="stylesheet" href="<?php echo assets('bo.css');?>/colorpicker " />
+<link rel="stylesheet" href="<?php echo assets('bo.css');?>/colorpicker.css " />
 <link rel="stylesheet" href="<?php echo assets('bo.css');?>/datepicker.css" />
 @stop
 
@@ -13,7 +13,7 @@
 <script src="<?php echo assets('bo.js');?>/select2.min.js"></script>
 <script src="<?php echo assets('bo.js');?>/jquery.icheck.min.js"></script>
 <script src="<?php echo assets('bo.js');?>/unicorn.form_common.js"></script>
-<script src="<?php echo assets('bo.js');?>/jquery.nicescroll.min.js.js"></script>
+<script src="<?php echo assets('bo.js');?>/jquery.nicescroll.min.js"></script>
 <script src="<?php echo assets('bo.js');?>/unicorn.js"></script>
 @stop
 

@@ -60,12 +60,36 @@ app()->get("/brands-list", function(){
 	return view("backoffice.brands-list");
 });
 
+app()->get("/brands-add", function(){
+	return view("backoffice.brands-add");
+});
+
+app()->get("/brands-edit", function(){
+	return view("backoffice.brands-edit");
+});
+
 app()->get("/customer-list", function(){
 	return view("backoffice.customer-list");
 });
 
+app()->get("/customer-add", function(){
+	return view("backoffice.customer-add");
+});
+
+app()->get("/customer-edit", function(){
+	return view("backoffice.customer-edit");
+});
+
 app()->get("/slide-list", function(){
 	return view("backoffice.slide-list");
+});
+
+app()->get("/slide-add", function(){
+	return view("backoffice.slide-add");
+});
+
+app()->get("/slide-edit", function(){
+	return view("backoffice.slide-edit");
 });
 
 app()->get("/transaction-list", function(){
@@ -76,16 +100,44 @@ app()->get("/static-content-list", function(){
 	return view("backoffice.static-content-list");
 });
 
+app()->get("/static-content-edit", function(){
+	return view("backoffice.static-content-edit");
+});
+
 app()->get("/shipping-cost-list", function(){
 	return view("backoffice.shipping-cost-list");
+});
+
+app()->get("/shipping-cost-edit", function(){
+	return view("backoffice.shipping-cost-edit");
+});
+
+app()->get("/shipping-cost-add", function(){
+	return view("backoffice.shipping-cost-add");
 });
 
 app()->get("/cat-product-list", function(){
 	return view("backoffice.cat-product-list");
 });
 
+app()->get("/cat-product-add", function(){
+	return view("backoffice.cat-product-add");
+});
+
+app()->get("/cat-product-edit", function(){
+	return view("backoffice.cat-product-edit");
+});
+
 app()->get("/product-list", function(){
 	return view("backoffice.product-list");
+});
+
+app()->get("/product-add", function(){
+	return view("backoffice.product-add");
+});
+
+app()->get("/product-edit", function(){
+	return view("backoffice.product-edit");
 });
 
 
