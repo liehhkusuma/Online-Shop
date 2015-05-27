@@ -24,6 +24,7 @@ class UserCtrl extends AdminCtrl{
 
     function addAction(){
         return view('backoffice.'.$this->view.'-add', array_merge($this->view_share(),[
+            'lang' => $this->elq->lang(),
             'validation' => $this->elq->jqv(),
             'module_access_select' => getSelect('bo_user_level', 'bul_id', 'bul_level_name'),
         ]));
@@ -47,6 +48,12 @@ class UserCtrl extends AdminCtrl{
             return response(['pAlert' => [
                 'title' => lang('gen.notif'),
                 'msg' => lang_var('validation.unique', ['attribute' => BoUsersElq::lang('bu_init')]),
+            ]]);
+        }
+        if(BoUsersElq::where(['bu_name' => post('bu_name')])->first()){
+            return response(['pAlert' => [
+                'title' => lang('gen.notif'),
+                'msg' => lang_var('validation.unique', ['attribute' => BoUsersElq::lang('bu_name')]),
             ]]);
         }
 
@@ -77,6 +84,12 @@ class UserCtrl extends AdminCtrl{
             return response(['pAlert' => [
                 'title' => lang('gen.notif'),
                 'msg' => lang_var('validation.unique', ['attribute' => BoUsersElq::lang('bu_init')]),
+            ]]);
+        }
+        if(BoUsersElq::where('bu_id', '!=', $id)->where(['bu_name' => post('bu_name')])->first()){
+            return response(['pAlert' => [
+                'title' => lang('gen.notif'),
+                'msg' => lang_var('validation.unique', ['attribute' => BoUsersElq::lang('bu_name')]),
             ]]);
         }
 

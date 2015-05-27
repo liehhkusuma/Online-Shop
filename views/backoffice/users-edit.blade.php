@@ -33,6 +33,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12">
+      <div class="notif"></div>
+
       <div class="widget-box">
         <div class="widget-title">
           <span class="icon">
@@ -41,57 +43,54 @@
           <h5>Update Content</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="#" method="get" class="form-horizontal">
+          <form id="theform" action="{{ route($ctrl.':update', ['id' => $id]) }}" class="form-horizontal" ajax-form="true">
             <div class="form-group">
-              <label class="col-sm-3 col-md-3 col-lg-2 control-label">Fullname</label>
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label">{{ $lang['bu_real_name'] }}</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" />
+                <input type="text" name="bu_real_name" value="{{ $row['bu_real_name'] }}" class="form-control input-sm" />
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 col-md-3 col-lg-2 control-label">Initial</label>
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label">{{ $lang['bu_init'] }}</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" />
+                <input type="text" name="bu_init" value="{{ $row['bu_init'] }}" class="form-control input-sm" />
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 col-md-3 col-lg-2 control-label">Email Address</label>
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label">{{ $lang['bu_email'] }}</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" />
+                <input type="text" name="bu_email" value="{{ $row['bu_email'] }}" class="form-control input-sm" />
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 col-md-3 col-lg-2 control-label">Username</label>
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label">{{ $lang['bu_name'] }}</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" />
+                <input type="text" name="bu_name" value="{{ $row['bu_name'] }}" class="form-control input-sm" />
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 col-md-3 col-lg-2 control-label">Password</label>
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label">{{ $lang['bu_passwd'] }}</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
-                <input type="password" class="form-control input-sm" />
+                <input type="password" name="bu_passwd" class="form-control input-sm" />
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 col-md-3 col-lg-2 control-label">User Level</label>
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label">{{ $lang['bu_level'] }}</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
-                <select>
-                  <option>First option</option>
-                  <option>Second option</option>
-                  <option>Third option</option>
-                  <option>Fourth option</option>
-                  <option>Fifth option</option>
-                  <option>Sixth option</option>
-                  <option>Seventh option</option>
-                  <option>Eighth option</option>
-                </select>
+                {{ select("bu_level", $module_access_select, $row['bu_level'], 'class="select2"') }}
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">Status</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
-                <label><input type="radio" name="radios" checked/> Active</label>
-                <label><input type="radio" name="radios" /> InActive</label>
+                <label><input type="radio" name="status" value="y" {{ $status == "y" ? "checked" : "" }}/> Active</label>
+                <label><input type="radio" name="status" value="n" {{ $status == "n" ? "checked" : "" }}/> InActive</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label"></label>
+              <div class="col-sm-9 col-md-9 col-lg-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </div>
           </form>
@@ -103,4 +102,9 @@
 @stop
 
 @section('footer_script')
+<script type="text/javascript">
+$(function(){
+  $("#theform").validate({{ $validation }});
+});
+</script>
 @stop
