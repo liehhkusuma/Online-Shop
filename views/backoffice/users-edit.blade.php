@@ -21,8 +21,7 @@
 <div id="content-header">
 <h1>Users - Update</h1>
 <div class="btn-group">
-  <a href="#" class="btn btn-large" title="Manage Files"><i class="fa fa-list"></i> List &nbsp; <span class="label label-danger">4</span></a>
-  <a href="#" class="btn btn-large" title="Manage Files"><i class="fa fa-plus"></i> Add</a>
+  <a href="{{ session('list_page') }}" class="btn btn-large" title="Manage Files"><i class="fa fa-list"></i> List &nbsp; <span class="label label-danger">{{ $count_data }}</span></a>
 </div>
 </div>
 <div id="breadcrumb">
