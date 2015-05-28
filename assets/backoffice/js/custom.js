@@ -108,6 +108,33 @@ var Main = function(){return {
       // $("body").append($thead_fix);
    },
 
+   iCheck : function(){
+      if($.fn.iCheck){
+         $('input[type=checkbox],input[type=radio]').iCheck({
+            checkboxClass: 'icheckbox_flat-blue',
+            radioClass: 'iradio_flat-blue'
+         });
+      }
+   },
+
+   colorpicker : function(){
+      if($.fn.colorpicker){
+         $('.colorpicker').colorpicker();
+      }
+   },
+
+   select2 : function(){
+      if($.fn.select2){
+         $('select').select2();
+      }
+   },
+
+   spinner : function(){
+      if($.fn.spinner){
+         $('.spinner').spinner();
+      }
+   },
+
    init : function(){
       Main.datepicker();
       Main.tooltip();
@@ -118,6 +145,10 @@ var Main = function(){return {
       Main.ligthbox();
       Main.fancybox();
       Main.theadfix();
+      Main.iCheck();
+      Main.colorpicker();
+      Main.select2();
+      Main.spinner();
    },
 
 }}();

@@ -17,9 +17,11 @@
         <link rel="stylesheet" href="<?php echo assets('bo.css');?>/fullcalendar.css" />
         <link rel="stylesheet" href="<?php echo assets('bo.css');?>/jquery.jscrollpane.css" /> 
         <link rel="stylesheet" href="<?php echo assets('bo.css');?>/unicorn.css" />
+
+    	<script type="text/javascript" src="{{ route('config:javascript') }}"></script>
         <!--[if lt IE 9]>
         <script type="text/javascript" src="<?php echo assets('bo.js');?>/respond.min.js"></script>
-        <![endif]-->       
+        <![endif]-->
 
         @yield('vendor_css')
         @yield('syntax_css')
@@ -62,6 +64,7 @@
             <script src="<?php echo assets('bo.js');?>/jquery.flot.resize.min.js"></script>
             <script src="<?php echo assets('bo.js');?>/jquery.sparkline.min.js"></script>
             <script src="<?php echo assets('bo.js');?>/fullcalendar.min.js"></script>
+            <script src="<?php echo assets('bo.js');?>/plugins.js"></script>
 
              <!-- This Page JavaScripts
 			============================================= -->
@@ -69,7 +72,9 @@
             
             <script src="<?php echo assets('bo.js');?>/jquery.nicescroll.min.js"></script>
             <script src="<?php echo assets('bo.js');?>/unicorn.js"></script>
-            <script src="<?php echo assets('bo.js');?>/unicorn.dashboard.js"></script>
+            {{-- <script src="<?php echo assets('bo.js');?>/unicorn.dashboard.js"></script> --}}
+            <script src="<?php echo assets('bo.js');?>/custom.js"></script>
+            <script src="<?php echo assets('bo.js');?>/main.js"></script>
 
              <!-- Footer Scripts
 		    ============================================= -->

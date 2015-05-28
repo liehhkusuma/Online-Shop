@@ -2,37 +2,36 @@
 
 @section('table')
 <?php ob_start(); ?>
-<div id="dialog" title="Delete Item?">
-  <p>Are you sure to delete this item?</p>
-</div>
 <div class="table-responsive">
 <table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
+      <td width="40px">No</td>
       <td>User</td>
       <td>Fullname</td>
-      <td>Action</td>
+      <td width="70px">Status</td>
+      <td width="80px">Action</td>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Galih</td>
-      <td>Gaih Kusuma</td>
-      <td>
-        <a class="btn btn-primary btn-xs tip-top" data-original-title="update"
-         href="#"><i class="fa fa-pencil"></i></a>
+  @if ($data->count())
+    @foreach ($data as $no => $row)
+      <tr>
+        <td>{{ $data->numPage() + $no+1 }}</td>
+        <td>{{ $row['bu_name'] }}</td>
+        <td>{{ $row['bu_real_name'] }}</td>
+        <td>{{ $row['bu_status'] == "y" ? UI::label('Active', 'success') : UI::label('Inactive', 'warning') }}</td>
+        <td>
+          <a href="{{ route($ctrl.':edit', ['id' => $row['bu_id']]) }}" class="btn btn-primary btn-xs tip-top" data-original-title="update"
+           href="#"><i class="fa fa-pencil"></i></a>
 
-        <a class="btn btn-danger btn-xs tip-top open-dialog" data-original-title="Del"
-         href="#"><i class="fa fa-trash-o"></i></a>
-         
-         <a class="btn btn-success btn-xs btn-success btn-xs tip-top" data-original-title="Status Active">Active</a>
-
-         <a class="btn btn-success btn-xs btn-warning btn-xs tip-top" data-original-title="Status Inactive">Inactive</a>
-      </td>
-    </tr>
-    <tr>
-      <td align="center" colspan="7">Belum ada Content untuk <strong>Users</strong></td>
-    </tr>
+          <a ajax-confirm="delete" href="{{ route($ctrl.':delete', ['id' => $row['bu_id']]) }}" class="btn btn-danger btn-xs tip-top open-dialog" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+        </td>
+      </tr>
+    @endforeach
+  @else
+    @include('backoffice.includes.data-not-found')
+  @endif
   </tbody>
 </table>  
 </div>            
@@ -48,8 +47,8 @@
 <div id="content-header">
 <h1>Users - List</h1>
 <div class="btn-group">
-  <a href="#" class="btn btn-large" title="Manage Files"><i class="fa fa-list"></i> List &nbsp; <span class="label label-danger">4</span></a>
-  <a href="#" class="btn btn-large" title="Manage Files"><i class="fa fa-plus"></i> Add</a>
+  <a href="#" class="btn btn-large" title="Manage Files"><i class="fa fa-list"></i> List &nbsp; <span class="label label-danger">{{ $count_data }}</span></a>
+  <a href="{{ route($ctrl.':add') }}" class="btn btn-large" title="Manage Files"><i class="fa fa-plus"></i> Add</a>
 </div>
 </div>
 <div id="breadcrumb">
@@ -66,7 +65,7 @@
         </span>
         <h5>Users</h5>
       </div>
-        <div class="widget-content">
+        <div class="widget-content ajax-table">
           @yield('table')
         </div>
     </div>

@@ -16,7 +16,7 @@ if(PROD){
 return array(
 	'driver'    => 'mysql',
     'host'      => 'localhost',
-    'database'  => 'smerp',
+    'database'  => 'online-shop',
     'username'  => 'root',
     'password'  => '',
     'charset'   => 'utf8',
