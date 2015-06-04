@@ -11,7 +11,7 @@ app()->post("/users/store", "UserCtrl:store");
 app()->post("/users/update/:id", "UserCtrl:update");
 app()->post("/users/delete/:id", "UserCtrl:delete");
 
-// Document Departement
+// Menu List
 app()->get("/menu(/:paging)", "MenuCtrl:list");
 app()->get("/menu/detail/:id", "MenuCtrl:detail");
 app()->get("/menu/add", "MenuCtrl:add");

@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="<?php echo assets('bo.css');?>/fullcalendar.css" />
         <link rel="stylesheet" href="<?php echo assets('bo.css');?>/jquery.jscrollpane.css" /> 
         <link rel="stylesheet" href="<?php echo assets('bo.css');?>/unicorn.css" />
+        <link rel="stylesheet" href="<?php echo assets('bo.css');?>/main_style.css" />
 
     	<script type="text/javascript" src="{{ route('config:javascript') }}"></script>
         <!--[if lt IE 9]>
@@ -33,7 +34,7 @@
 				<h1><a href="./index.html">Unicorn Admin</a></h1>	
 				<a id="menu-trigger" href="#"><i class="fa fa-bars"></i></a>	
 			</div>
-		
+			
 			<div id="user-nav">
 			@include('backoffice.includes.nav')
 	        </div>
@@ -41,12 +42,12 @@
 			<div id="sidebar">
 			@include('backoffice.includes.sidebar')
 			</div>
-			
+		
 			<div id="content">
-
 				<div class="container-fluid">
 				@yield('content')
 				</div>
+				<div class="clearfix"></div>
 			</div>
 
 			<div class="row">
