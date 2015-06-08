@@ -2,37 +2,34 @@
 
 @section('table')
 <?php ob_start(); ?>
-<div id="dialog" title="Delete Item?">
-  <p>Are you sure to delete this item?</p>
-</div>
 <div class="table-responsive">
-<table class="table table-bordered table-striped table-hover">
+<table class="table table-bordered table-striped table-hover sortable" data-table="BoMenuElq">
   <thead>
     <tr>
+      <td width="40px">No</td>
       <td>Menu</td>
       <td>Link</td>
-      <td>Action</td>
+      <td width="70px">Status</td>
+      <td width="80px">Action</td>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Dashboard</td>
-      <td>DashboardCtrl:list</td>
+  @if ($data->count())
+    @foreach ($data as $no => $row)
+    <tr id="{{ $row['bm_id']."_".$row['bm_order'] }}">
+      <td>{{ $data->numPage() + $no+1 }}</td>
+      <td>{{ $row['bm_name'] }}</td>
+      <td>{{ $row['parent_name'] }}</td>
+      <td>{{ $row['bm_status'] == "y" ? UI::label('Active', 'success') : UI::label('Inactive', 'warning') }}</td>
       <td>
-        <a class="btn btn-primary btn-xs tip-top" data-original-title="update"
-         href="#"><i class="fa fa-pencil"></i></a>
-
-        <a class="btn btn-danger btn-xs tip-top open-dialog" data-original-title="Del"
-         href="#"><i class="fa fa-trash-o"></i></a>
-         
-         <a class="btn btn-success btn-xs btn-success btn-xs tip-top" data-original-title="Status Active">Active</a>
-
-         <a class="btn btn-success btn-xs btn-warning btn-xs tip-top" data-original-title="Status Inactive">Inactive</a>
+          <a href="{{ route($ctrl.':edit', ['id' => $row['bm_id']]) }}" class="btn btn-primary btn-xs tip-top" data-original-title="update"><i class="fa fa-pencil"></i></a>
+          <a ajax-confirm="delete" href="{{ route($ctrl.':delete', ['id' => $row['bm_id']]) }}" class="btn btn-danger btn-xs tip-top open-dialog" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
       </td>
     </tr>
-    <tr>
-      <td align="center" colspan="7">Belum ada Content untuk <strong> Menu </strong></td>
-    </tr>
+    @endforeach
+  @else
+    @include('backoffice.includes.data-not-found')
+  @endif
   </tbody>
 </table>  
 </div>            
@@ -48,13 +45,14 @@
 <div id="content-header">
 <h1>Menu - List</h1>
 <div class="btn-group">
-  <a href="#" class="btn btn-large" title="Manage Files"><i class="fa fa-list"></i> List &nbsp; <span class="label label-danger">4</span></a>
-  <a href="#" class="btn btn-large" title="Manage Files"><i class="fa fa-plus"></i> Add</a>
+  <a href="javascript:;" class="btn btn-large btn-sorting"><span class="fa fa-sort"></span> Sorting </a>
+  <a href="{{ route($ctrl.':list') }}" class="btn btn-large" title="Manage Files"><i class="fa fa-list"></i> List &nbsp; <span class="label label-danger">{{ $count_data }}</span></a>
+  <a href="{{ route($ctrl.':add') }}" class="btn btn-large" title="Manage Files"><i class="fa fa-plus"></i> Add</a>
 </div>
 </div>
 <div id="breadcrumb">
-<a href="#" title="Go to Home" class="tip-bottom"><i class="fa fa-home"></i> Home</a>
-<a href="#" class="current">menu</a>
+  <a href="{{ route($ctrl.':list') }}" title="{{ $page['name'] }}" class="tip-bottom"><i class="fa fa-home"></i> {{ $page['name'] }}</a>
+  <a href="javascript:;" class="current">List</a>
 </div>
 
 <div class="row">
@@ -66,7 +64,7 @@
         </span>
         <h5>Menu</h5>
       </div>
-        <div class="widget-content">
+        <div class="widget-content ajax-table">
           @yield('table')
         </div>
     </div>

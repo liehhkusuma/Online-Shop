@@ -3,7 +3,7 @@
 class AdminCtrl extends BaseCtrl{
 
 	function __construct(){
-		// if(!AuthCtrl::user()) redirect_route('AuthCtrl:index');
+		if(!AuthCtrl::user()) redirect_route('AuthCtrl:index');
 
 		$this->pages = !empty($this->page) ? config('config.page.'.$this->page) : "";
 		$this->lang = !empty($this->page) ? lang('field.'.$this->page) : "";

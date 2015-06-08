@@ -37,7 +37,7 @@ class MenuCtrl extends AdminCtrl{
 
         return view('backoffice.'.$this->view.'-add', array_merge($this->view_share(),[
             'validation' => $this->elq->jqv(),
-            'parent_select' => getSelect($parent, 'bm_id', 'bm_name', ['0' => "Root"])
+            'parent_select' => getSelect($parent, 'bm_id', 'bm_name', ['root' => "Root"])
         ]));
     }
 
@@ -50,7 +50,7 @@ class MenuCtrl extends AdminCtrl{
             'row' => $elq,
             'status' => $elq->status(),
             'validation' => $this->elq->jqv(),
-            'parent_select' => getSelect($parent, 'bm_id', 'bm_name', ['0' => "Root"])
+            'parent_select' => getSelect($parent, 'bm_id', 'bm_name', ['root' => "Root"])
         ]));
     }
 
@@ -62,7 +62,7 @@ class MenuCtrl extends AdminCtrl{
 
             return response([
                 'info' => UI::alert(lang_var('gen.add_success', ['type' => $this->pages['type']]), 'success'),
-                'redirect' => session('list_page'),
+                'redirect' => route($this->ctrl.":list"),
                 'delay' => 2000,
             ]);
         }

@@ -4,7 +4,7 @@ class AuthCtrl extends BaseCtrl{
 
     public function indexAction(){
         if(static::user()) return redirect_route('DashboardCtrl:list');
-        return view('backoffice.login',[]);
+        return view('backoffice.index',[]);
     }
 
     public function dologinAction(){
@@ -24,6 +24,7 @@ class AuthCtrl extends BaseCtrl{
 
     	return response([
             'info' => UI::alert(lang('gen.auth_fail'), 'danger'),
+            'delay' => true
         ]);
     }
 

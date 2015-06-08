@@ -19,82 +19,65 @@
 
 @section('content')
 <div id="content-header">
-<h1>Menu - Update</h1>
+<h1>{{ $page['name'] }} - Edit</h1>
 <div class="btn-group">
-  <a href="#" class="btn btn-large" title="Manage Files"><i class="fa fa-list"></i> List &nbsp; <span class="label label-danger">4</span></a>
-  <a href="#" class="btn btn-large" title="Manage Files"><i class="fa fa-plus"></i> Add</a>
+  <a href="{{ session('list_page') }}" class="btn btn-large" title="Manage Files"><i class="fa fa-arrow-left"></i> Back</a>
 </div>
 </div>
 <div id="breadcrumb">
-<a href="#" title="Go to Home" class="tip-bottom"><i class="fa fa-home"></i> Home</a>
-<a href="#" class="current">Menu</a>
+  <a href="{{ route($ctrl.':list') }}" title="{{ $page['name'] }}" class="tip-bottom"><i class="fa fa-home"></i> {{ $page['name'] }}</a>
+  <a href="javascript:;" class="current">Edit</a>
 </div>
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12">
+      <div class="notif"></div>
+
       <div class="widget-box">
         <div class="widget-title">
           <span class="icon">
             <i class="fa fa-align-justify"></i>                 
           </span>
-          <h5>Update Content</h5>
+          <h5>Edit Content</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="#" method="get" class="form-horizontal">
+          <form id="theform" action="{{ route($ctrl.':update', ['id' => $id]) }}" class="form-horizontal" ajax-form="true">
             <div class="form-group">
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">Parent Name</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
-                <select>
-                  <option>First option</option>
-                  <option>Second option</option>
-                  <option>Third option</option>
-                  <option>Fourth option</option>
-                  <option>Fifth option</option>
-                  <option>Sixth option</option>
-                  <option>Seventh option</option>
-                  <option>Eighth option</option>
-                </select>
+                {{ select('bm_parent_id', $parent_select, $row['bm_parent_id']) }}
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">Menu Name</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" />
+                <input type="text" name="bm_name" value="{{ $row['bm_name'] }}" class="form-control input-sm" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">Link</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" />
+                <input type="text" name="bm_link" value="{{ $row['bm_link'] }}" class="form-control input-sm" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">Icon</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 col-md-3 col-lg-2 control-label">Menu Type</label>
-              <div class="col-sm-9 col-md-9 col-lg-10">
-                <select>
-                  <option>First option</option>
-                  <option>Second option</option>
-                  <option>Third option</option>
-                  <option>Fourth option</option>
-                  <option>Fifth option</option>
-                  <option>Sixth option</option>
-                  <option>Seventh option</option>
-                  <option>Eighth option</option>
-                </select>
+                <input type="text" name="bm_icon" value="{{ $row['bm_icon'] }}" class="form-control input-sm" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">Status</label>
               <div class="col-sm-9 col-md-9 col-lg-10">
-                <label><input type="radio" name="radios" checked/> Active</label>
-                <label><input type="radio" name="radios" /> InActive</label>
+                <label><input type="radio" name="status" value="y" {{ $status == "y" ? "checked" : "" }}/> Active</label>
+                <label><input type="radio" name="status" value="n" {{ $status == "n" ? "checked" : "" }}/> InActive</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label"></label>
+              <div class="col-sm-9 col-md-9 col-lg-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </div>
           </form>
@@ -106,4 +89,9 @@
 @stop
 
 @section('footer_script')
+<script type="text/javascript">
+$(function(){
+  $("#theform").validate({{ $validation }});
+});
+</script>
 @stop

@@ -22,9 +22,7 @@
         <td>{{ $row['bu_real_name'] }}</td>
         <td>{{ $row['bu_status'] == "y" ? UI::label('Active', 'success') : UI::label('Inactive', 'warning') }}</td>
         <td>
-          <a href="{{ route($ctrl.':edit', ['id' => $row['bu_id']]) }}" class="btn btn-primary btn-xs tip-top" data-original-title="update"
-           href="#"><i class="fa fa-pencil"></i></a>
-
+          <a href="{{ route($ctrl.':edit', ['id' => $row['bu_id']]) }}" class="btn btn-primary btn-xs tip-top" data-original-title="update"><i class="fa fa-pencil"></i></a>
           <a ajax-confirm="delete" href="{{ route($ctrl.':delete', ['id' => $row['bu_id']]) }}" class="btn btn-danger btn-xs tip-top open-dialog" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
         </td>
       </tr>
@@ -47,13 +45,13 @@
 <div id="content-header">
 <h1>Users - List</h1>
 <div class="btn-group">
-  <a href="#" class="btn btn-large" title="Manage Files"><i class="fa fa-list"></i> List &nbsp; <span class="label label-danger">{{ $count_data }}</span></a>
+  <a href="{{ route($ctrl.':list') }}" class="btn btn-large" title="Manage Files"><i class="fa fa-list"></i> List &nbsp; <span class="label label-danger">{{ $count_data }}</span></a>
   <a href="{{ route($ctrl.':add') }}" class="btn btn-large" title="Manage Files"><i class="fa fa-plus"></i> Add</a>
 </div>
 </div>
 <div id="breadcrumb">
-<a href="#" title="Go to Home" class="tip-bottom"><i class="fa fa-home"></i> Home</a>
-<a href="#" class="current">users</a>
+  <a href="{{ route($ctrl.':list') }}" title="{{ $page['name'] }}" class="tip-bottom"><i class="fa fa-home"></i> {{ $page['name'] }}</a>
+  <a href="javascript:;" class="current">List</a>
 </div>
 
 <div class="row">

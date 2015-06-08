@@ -54,5 +54,5 @@
         </ul>
     </li>
     <li class="btn"><a title="" href="#"><i class="fa fa-cog"></i> <span class="text">Settings</span></a></li>
-    <li class="btn"><a title="" href="login.html"><i class="fa fa-share"></i> <span class="text">Logout</span></a></li>
+    <li class="btn"><a title="" href="{{ route('AuthCtrl:dologout') }}"><i class="fa fa-share"></i> <span class="text">Logout</span></a></li>
 </ul>

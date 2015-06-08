@@ -1,9 +1,5 @@
 <?php
 
-app()->get("/login", function(){
-	return view("backoffice.index");
-});
-
 /* Javascript Lang */
 app()->get('/javascript_lang', function(){
 	$res = "";
@@ -18,10 +14,6 @@ app()->get('/javascript_lang', function(){
 
 app()->group("/backoffice", function(){
 	require_once("backoffice_route.php");
-});
-
-app()->get("/dashboard", function(){
-	return view("backoffice.dashboard");
 });
 
 app()->get("/users-list", function(){

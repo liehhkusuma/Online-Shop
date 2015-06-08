@@ -1,4 +1,13 @@
 <?php
+
+/* Authentication */
+app()->get("/", "AuthCtrl:index");
+app()->post("/dologin", "AuthCtrl:dologin");
+app()->get("/dologout", "AuthCtrl:dologout");
+
+/* Dashboard */
+app()->get("/dashboard", "DashboardCtrl:list");
+
 /*
 | User Management
 */

@@ -19,12 +19,12 @@
 <div id="content-header">
 <h1>Users - Add</h1>
 <div class="btn-group">
-  <a href="{{ session('list_page') }}" class="btn btn-large" title="Manage Files"><i class="fa fa-list"></i> List &nbsp; <span class="label label-danger">{{ $count_data }}</span></a>
+  <a href="{{ session('list_page') }}" class="btn btn-large" title="Manage Files"><i class="fa fa-arrow-left"></i> Back</a>
 </div>
 </div>
 <div id="breadcrumb">
-<a href="#" title="Go to Home" class="tip-bottom"><i class="fa fa-home"></i> Home</a>
-<a href="#" class="current">users</a>
+  <a href="{{ route($ctrl.':list') }}" title="{{ $page['name'] }}" class="tip-bottom"><i class="fa fa-home"></i> {{ $page['name'] }}</a>
+  <a href="javascript:;" class="current">Add</a>
 </div>
 
 <div class="container-fluid">
